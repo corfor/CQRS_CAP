@@ -14,17 +14,30 @@ using System;
 using System.Linq;
 using System.Transactions;
 using System.ServiceModel;
-using System.Messaging;
-using CQRS.Messages;
 
 namespace CQRS.Service
 {
-    public class AccountCommandService : IAccountCommandService
+    public class AccountService : ServiceBase, IAccountService
     {
         private const string IncreaseQueueName = @".\Private$\cqrs_increase";
         private const string DecreaseQueueName = @".\Private$\cqrs_decrease";
 
-        // TODO 2d: Command doesn't update current state.
+        public decimal GetAccountBalance(string account)
+        {
+            try
+            {
+                using (CAP_CQRSEntities entities = new CAP_CQRSEntities())
+                {
+                    AccountBalance entity = GetAccountEntity(account, entities);
+                    return entity.Balance;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException(ex.Message);
+            }
+        }
+
         public void Transfer(string fromAccount, string toAccount, decimal amount)
         {
             try
@@ -46,21 +59,9 @@ namespace CQRS.Service
                             Amount = amount
                         });
 
-                        // PUBLISH
-                        TransferMessage message = new TransferMessage()
-                        {
-                            FromAccount = fromAccount,
-                            ToAccount = toAccount,
-                            Amount = amount
-                        };
-                        using (var queue = new MessageQueue(IncreaseQueueName))
-                        {
-                            queue.Send(message, MessageQueueTransactionType.Automatic);
-                        }
-                        using (var queue = new MessageQueue(DecreaseQueueName))
-                        {
-                            queue.Send(message, MessageQueueTransactionType.Automatic);
-                        }
+                        from.Balance -= amount;
+                        AccountBalance to = GetAccountEntity(toAccount, entities);
+                        to.Balance += amount;
 
                         entities.SaveChanges();
                         tx.Complete();
@@ -71,18 +72,6 @@ namespace CQRS.Service
             {
                 throw new FaultException(ex.Message);
             }
-        }
-
-        private static AccountBalance GetAccountEntity(string account, CAP_CQRSEntities entities)
-        {
-            IQueryable<AccountBalance> query =
-                from b in entities.AccountBalances
-                where b.Account == account
-                select b;
-            AccountBalance entity = query.FirstOrDefault();
-            if (entity == null)
-                throw new ApplicationException("No such account.");
-            return entity;
         }
     }
 }

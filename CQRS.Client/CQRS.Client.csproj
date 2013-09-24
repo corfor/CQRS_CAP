@@ -63,16 +63,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Service References\CommandServiceReference\Reference.cs">
+    <Compile Include="Service References\AccountServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\QueryServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
+    <Compile Include="ServiceAgent.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,18 +111,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\CommandServiceReference\AccountCommandService.wsdl" />
-    <None Include="Service References\CommandServiceReference\AccountCommandService.xsd">
+    <None Include="Service References\AccountServiceReference\AccountService.wsdl" />
+    <None Include="Service References\AccountServiceReference\AccountService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CommandServiceReference\AccountCommandService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\QueryServiceReference\AccountQueryService.wsdl" />
-    <None Include="Service References\QueryServiceReference\AccountQueryService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\QueryServiceReference\AccountQueryService1.xsd">
+    <None Include="Service References\AccountServiceReference\AccountService1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -134,41 +123,25 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\CommandServiceReference\" />
-    <WCFMetadataStorage Include="Service References\QueryServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CommandServiceReference\AccountCommandService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CommandServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CommandServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CommandServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\QueryServiceReference\AccountQueryService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\QueryServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\QueryServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\QueryServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="SampleData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AccountServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountServiceReference\AccountService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AccountServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

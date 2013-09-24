@@ -12,8 +12,7 @@
 
 using UpdateControls;
 using System;
-using CQRS.Client.QueryServiceReference;
-using CQRS.Client.CommandServiceReference;
+using CQRS.Client.AccountServiceReference;
 
 namespace CQRS.Client
 {
@@ -81,15 +80,10 @@ namespace CQRS.Client
                 if (string.IsNullOrEmpty(FromAccount))
                     _accountBalance = 0.0m;
                 else
-                {
-                    using (AccountQueryServiceClient service = new AccountQueryServiceClient())
-                    {
-                        _accountBalance = service.GetAccountBalance(FromAccount);
-                    }
-                }
+                    _accountBalance = ServiceAgent.GetAccountBalance(FromAccount);
 
                 var end = DateTime.Now;
-                LastError = (end-start).ToString();
+                LastError = (end - start).ToString();
             }
             catch (Exception ex)
             {
@@ -104,11 +98,7 @@ namespace CQRS.Client
         {
             try
             {
-                using (AccountCommandServiceClient service = new AccountCommandServiceClient())
-                {
-                    service.Transfer(FromAccount, ToAccount, TransferAmount);
-                }
-
+                ServiceAgent.Transfer(FromAccount, ToAccount, TransferAmount);
                 ToAccount = string.Empty;
                 TransferAmount = 0.0m;
                 LastError = string.Empty;

@@ -12,7 +12,7 @@
 
 using System;
 using System.Threading;
-using CQRS.Client.CommandServiceReference;
+using CQRS.Client.AccountServiceReference;
 
 namespace CQRS.Client
 {
@@ -56,10 +56,10 @@ namespace CQRS.Client
 					int toIndex = (fromIndex + random.Next(_accounts.Length - 1) + 1) % _accounts.Length;
 					string fromAccount = _accounts[fromIndex];
 					string toAccount = _accounts[toIndex];
-					using (AccountCommandServiceClient service = new AccountCommandServiceClient())
-					{
-						service.Transfer(fromAccount, toAccount, 0.01m);
-					}
+                    using (AccountServiceClient service = new AccountServiceClient())
+                    {
+                        service.Transfer(fromAccount, toAccount, 0.01m);
+                    }
 				}
 				catch (Exception ex)
 				{

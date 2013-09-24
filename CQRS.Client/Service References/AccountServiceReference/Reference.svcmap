@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d87c9a36-b623-466a-9a09-a984f3c04e0a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4282/AccountService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountService.disco" MetadataType="Disco" ID="c35296cb-6dc3-43c0-90e3-1fb17fa765b2" SourceId="1" SourceUrl="http://localhost:4282/AccountService.svc?disco" />
+    <MetadataFile FileName="AccountService.xsd" MetadataType="Schema" ID="4797e593-9ebb-4692-aaf1-f07ccbbfbfcf" SourceId="1" SourceUrl="http://localhost:4282/AccountService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountService.wsdl" MetadataType="Wsdl" ID="e0ded5de-6e9d-4b6d-a412-ee54753c2727" SourceId="1" SourceUrl="http://localhost:4282/AccountService.svc?wsdl" />
+    <MetadataFile FileName="AccountService1.xsd" MetadataType="Schema" ID="ce366d14-de3a-41c1-872d-ed30230df438" SourceId="1" SourceUrl="http://localhost:4282/AccountService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

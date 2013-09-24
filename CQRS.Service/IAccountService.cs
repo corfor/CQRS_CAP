@@ -14,10 +14,12 @@ using System.ServiceModel;
 
 namespace CQRS.Service
 {
-    // TODO 2b: Command interface.
     [ServiceContract]
-    public interface IAccountCommandService
+    public interface IAccountService
     {
+        [OperationContract]
+        decimal GetAccountBalance(string account);
+
         [OperationContract]
         void Transfer(string fromAccount, string toAccount, decimal amount);
     }
